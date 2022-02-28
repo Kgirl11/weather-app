@@ -41,13 +41,15 @@ function displayForecast(response) {
     if (index < 6) {
       forecastHTML =
         forecastHTML +
-        (
+        `
           <div class="col-2">
             <div class="weather-forecast-date">
               ${formatDay(forecastDay.dt)}
             </div>
             <img
-              src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png"
+              src="http://openweathermap.org/img/wn/${
+                forecastDay.weather[0].icon
+              }@2x.png"
               alt=""
               width="42"
             />
@@ -61,7 +63,7 @@ function displayForecast(response) {
               </span>
             </div>
           </div>
-        );
+        `;
     }
   });
 
@@ -71,15 +73,14 @@ function displayForecast(response) {
 
 function getForecast(coordinates) {
   let apiKey = "9bb2e2aab59857fad9fefd963f66a3b4";
-  let apiURL =
-    "https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon${coordinates.lon}&appid=${apiKey}&units=metric";
-  axios.get(apiUrl).then(displayForecast);
+  let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiURL).then(displayForecast);
 }
 
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
   let cityElement = document.querySelector("#city");
-  let description = document.querySelector("#description");
+  let descriptionElement = document.querySelector("#description");
   let humidityElement = document.querySelector("#humidity");
   let windElement = document.querySelector("#wind");
   let dateElement = document.querySelector("#date");
@@ -103,7 +104,7 @@ function displayTemperature(response) {
 }
 
 function search(city) {
-  let apikey = "9bb2e2aab59857fad9fefd963f66a3b4";
+  let apiKey = "9bb2e2aab59857fad9fefd963f66a3b4";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayTemperature);
 }
