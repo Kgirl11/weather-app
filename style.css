@@ -1,5 +1,6 @@
 body {
   font-family: arial, sans-serif;
+  background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
 }
 
 h1 {
@@ -88,4 +89,13 @@ li::first-letter {
 
 .weather-forecast-temperatures {
   font-size: 13px;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited {
+  background-color: #475053;
+  color: white;
+  outline-color: #475053;
 }
