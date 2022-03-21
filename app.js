@@ -33,12 +33,12 @@ function formatDay(timestamp) {
 
 function displayForecast(response) {
   let forecast = response.data.daily;
-
   let forecastElement = document.querySelector("#forecast");
 
-  let forecastHTML = `<div class="row">`;
+  let forecastHTML = `<div class ="row">`;
+
   forecast.forEach(function (forecastDay, index) {
-    if (index < 6) {
+    if (index > 0 && index < 6) {
       forecastHTML =
         forecastHTML +
         `
@@ -51,14 +51,12 @@ function displayForecast(response) {
                 forecastDay.weather[0].icon
               }@2x.png"
               alt=""
-              width="42"
-            />
+              width="42">
             <div class="weather-forecast-temperatures">
               <span class="weather-forecast-temperature-max">
                 ${Math.round(forecastDay.temp.max)}°
               </span>
               <span class="weather-forecast-temperature-min">
-                {" "}
                 ${Math.round(forecastDay.temp.min)}°
               </span>
             </div>
@@ -90,7 +88,7 @@ function displayTemperature(response) {
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
 
-  celsiusTemperature = response.data.main.temp;
+  celsiusTemperature = Math.round(response.data.main.temp);
 
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
   cityElement.innerHTML = response.data.name;
